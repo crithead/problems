@@ -1,0 +1,47 @@
+#!/bin/bash
+#
+# Makefile generator for Problems
+#
+MAKEFILE=Makefile
+
+CFLAGS="-Wall -pedantic --std=c99"
+CPPFLAGS="-Wall -pedantic --std=c++11"
+
+CFILES=$(ls *.c)
+CPPFILES=$(ls *.cpp)
+
+PROGS=
+for file in $CFILES;  do
+    PROGS="$PROGS $(basename $file .c)"
+done
+for file in $CPPFILES;  do
+    PROGS="$PROGS $(basename $file .cpp)"
+done
+
+if [ -e $MAKEFILE ]; then
+    rm -f $MAKEFILE
+fi
+
+echo "# Generated Makefile for Problems" > $MAKEFILE
+echo "all:$PROGS" >> $MAKEFILE
+echo "" >> $MAKEFILE
+
+for file in $CPPFILES; do
+    prog=$(basename $file .cpp)
+    echo "$prog: $file" >> $MAKEFILE
+    echo "	g++ $CPPFLAGS -o $prog $file -lm" >> $MAKEFILE
+    echo "" >> $MAKEFILE
+done
+
+for file in $CFILES; do
+    prog=$(basename $file .c)
+    echo "$prog: $file" >> $MAKEFILE
+    echo "	gcc $CFLAGS -o $prog $file -lm" >> $MAKEFILE
+    echo "" >> $MAKEFILE
+done
+
+echo ".PHONY: clean" >> $MAKEFILE
+echo "clean:" >> $MAKEFILE
+echo "	rm -f $PROGS" >> $MAKEFILE
+echo "" >> $MAKEFILE
+

@@ -10,7 +10,7 @@
 #include <stdexcept>
 
 static bool is_prime( unsigned int n );
-static unsigned int smallest_prime_factor_of( unsigned int n );
+//static unsigned int smallest_prime_factor_of( unsigned int n );
 static std::list<unsigned int>& prime_factors_of( unsigned int n );
 
 static void print_primes( unsigned int min, unsigned int max );
@@ -42,11 +42,11 @@ static bool is_prime( unsigned int n )
 	return true;
 }
 
-static unsigned int smallest_prime_factor_of( unsigned int n )
-{
-	// TODO implement this
-	return 0;
-}
+//static unsigned int smallest_prime_factor_of( unsigned int n )
+//{
+//	// TODO Implement!
+//	return 0;
+//}
 
 //
 // TODO: re-write this using the smallest_prime_factor() function

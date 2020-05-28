@@ -7,7 +7,7 @@
 
 static void types(void)
 {
-	printf("--- %s\n", __FUNCTION__);
+	printf("--- %s\n", "types");
 	printf("sizeof(char)            %4d\n", (int)sizeof(char));
 	printf("sizeof(short int)       %4d\n", (int)sizeof(short int));
 	printf("sizeof(int)             %4d\n", (int)sizeof(int));
@@ -24,7 +24,7 @@ static const char STRING2[] = "another thing that's coming";
 static void array(void)
 {
 	int x;
-	printf("--- %s\n", __FUNCTION__);
+	printf("--- %s\n", "array");
 	x = sizeof(STRING1);
 	printf("sizeof(STRING1)  %4d\n", x);
 	x = sizeof(*STRING1);

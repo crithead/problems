@@ -30,23 +30,26 @@ echo "BIN = $BINDIR" >> $MAKEFILE
 echo "" >> $MAKEFILE
 echo "all:$PROGS" >> $MAKEFILE
 echo "" >> $MAKEFILE
+echo "$BINDIR:" >> $MAKEFILE
+echo "	mkdir -p $BINDIR" >> $MAKEFILE
+echo "" >> $MAKEFILE
 
 for file in $CPPFILES; do
     prog=$(basename $file .cpp)
-    echo "$prog: $file" >> $MAKEFILE
+    echo "$prog: $file | $BINDIR" >> $MAKEFILE
     echo "	g++ $CPPFLAGS -o \$(BIN)/$prog $file -lm" >> $MAKEFILE
     echo "" >> $MAKEFILE
 done
 
 for file in $CFILES; do
     prog=$(basename $file .c)
-    echo "$prog: $file" >> $MAKEFILE
+    echo "$prog: $file | $BINDIR" >> $MAKEFILE
     echo "	gcc $CFLAGS -o \$(BIN)/$prog $file -lm" >> $MAKEFILE
     echo "" >> $MAKEFILE
 done
 
 echo ".PHONY: clean" >> $MAKEFILE
 echo "clean:" >> $MAKEFILE
-echo "	rm -f $PROGS" >> $MAKEFILE
+echo "	rm -fr $BINDIR" >> $MAKEFILE
 echo "" >> $MAKEFILE
 

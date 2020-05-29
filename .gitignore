@@ -2,3 +2,5 @@
 *~
 *.swp
 /bin
+# Makefile in auto-generated
+Makefile

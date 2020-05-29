@@ -4,11 +4,13 @@
 #
 MAKEFILE=Makefile
 
-CFLAGS="-Wall -pedantic --std=c99"
-CPPFLAGS="-Wall -pedantic --std=c++11"
+CFLAGS="-Wall -Wpedantic --std=c99"
+CPPFLAGS="-Wall -Wpedantic --std=c++11"
 
 CFILES=$(ls *.c)
 CPPFILES=$(ls *.cpp)
+
+BINDIR="bin"
 
 PROGS=
 for file in $CFILES;  do
@@ -23,20 +25,23 @@ if [ -e $MAKEFILE ]; then
 fi
 
 echo "# Generated Makefile for Problems" > $MAKEFILE
+echo "" >> $MAKEFILE
+echo "BIN = $BINDIR" >> $MAKEFILE
+echo "" >> $MAKEFILE
 echo "all:$PROGS" >> $MAKEFILE
 echo "" >> $MAKEFILE
 
 for file in $CPPFILES; do
     prog=$(basename $file .cpp)
     echo "$prog: $file" >> $MAKEFILE
-    echo "	g++ $CPPFLAGS -o $prog $file -lm" >> $MAKEFILE
+    echo "	g++ $CPPFLAGS -o \$(BIN)/$prog $file -lm" >> $MAKEFILE
     echo "" >> $MAKEFILE
 done
 
 for file in $CFILES; do
     prog=$(basename $file .c)
     echo "$prog: $file" >> $MAKEFILE
-    echo "	gcc $CFLAGS -o $prog $file -lm" >> $MAKEFILE
+    echo "	gcc $CFLAGS -o \$(BIN)/$prog $file -lm" >> $MAKEFILE
     echo "" >> $MAKEFILE
 done
 

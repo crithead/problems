@@ -43,11 +43,11 @@ int main(int argc, char *argv[])
  */
 static int number_of_bits_on(int n)
 {
-	int count = 0;
-	int n_bits = 8 * sizeof(int);
-	int i;
+	unsigned int count = 0;
+	unsigned int n_bits = 8 * sizeof(int);
+	unsigned int i;
 	for (i = 0; i < n_bits; i++) {
-		if ((n>>i) & 1)
+		if (((unsigned int)n >> i) & 1)
 			count++;
 	}
 	return count;

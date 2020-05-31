@@ -3,15 +3,15 @@
 #include <stdio.h>
 #include <assert.h>
 
-int nearest_power_of_two(int n)
+unsigned int nearest_power_of_two(unsigned int n)
 {
-    int value = 0;
-    int lower, upper;
-    int i;
+    unsigned int value = 0;
+    unsigned int lower = 0, upper = 0;
+    unsigned int i;
 
     for (i = 1; i < 32; i++)
     {
-        value = (1 << i);
+        value = ((unsigned int)1 << i);
         if (value >= n)
         {
             upper = i;
@@ -41,7 +41,7 @@ int main(void)
 {
     int i, n;
     int a = 0, b = 1, c;
-    
+
     for (i = 1; i < MAX; i++)
     {
         c = a + b;
@@ -54,3 +54,4 @@ int main(void)
 
     return 0;
 }
+

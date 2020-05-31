@@ -25,7 +25,7 @@ static int num_bits_on(int n)
 	int num_bits = 0;
 	int bits_per_int = 8 * sizeof(int);
 	for (i = 0; i < bits_per_int; i++) {
-		int mask = (1 << i);
+		int mask = ((unsigned int)1 << i);
 		if (n & mask)
 			num_bits++;
 	}
